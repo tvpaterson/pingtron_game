@@ -1,7 +1,8 @@
 import ReviewCard from "./ReviewCard";
-const ReviewsList = ({reviews, removeReview}) => {
+
+const ReviewsList = ({reviews}) => {
     const reviewsList = reviews.map((review) =>{
-        return <ReviewCard name={name} rating={rating} review={review} key={review._id} removeReview={removeReview} />
+        return <ReviewCard review={review} key={review._id}/>
     });
     
     return (
