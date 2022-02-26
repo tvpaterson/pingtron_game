@@ -1,22 +1,26 @@
 use playerList;
 db.dropDatabase();
 
-db.players.insertMany([
+db.characters.insertMany([
     {
-        name: "Wind Jammers",
-        score: 5
+        name: "Rory",
+        strength: 5,
+        speed: 5
     },
     {
-        name: "Jeff Bridges",
-        score: 10
+        name: "Rob",
+        strength: 10,
+        speed: 1
     },
     {
-        name: "Kevin Flynn",
-        score: 7
+        name: "Ryan",
+        strength: 7,
+        speed: 2
     },
     {
-        name: "Clu",
-        score: 7
+        name: "Taylor",
+        strength: 7,
+        speed: 4
     },
 ])
 
