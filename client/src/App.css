@@ -1,0 +1,73 @@
+.rating {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+  }
+  .rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+  }
+  .rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+  }
+  .rating:not(:checked) > label:before {
+    content: '★ ';
+  }
+  .rating > input:checked ~ label {
+    color: #ffc700;    
+  }
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+  }
+  .rating > input:checked + label:hover,
+  .rating > input:checked + label:hover ~ label,
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+  }
+  
+  .myForm {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 0.8em;
+    width: 30em;
+    padding: 1em;
+    } 
+    
+    .myForm label {
+    font-weight: bold;
+    text-align: left;
+    display: block;
+    }
+    
+    .myForm input,
+    .myForm textarea {
+    border: 1px solid #ccc;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  
+    }
+    
+    .myForm textarea {
+    height: 100px;
+    width: 100%;
+    }
+    
+    .myForm button {
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #eee;
+    border: none;
+    font-weight: bold;
+    }
+    
+    .myForm button:hover {
+    background: #ccc;
+    cursor: pointer;
+    }
