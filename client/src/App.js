@@ -1,6 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
+import ReviewForm from './components/ReviewForm';
 
 import {getReviews} from './components/ReviewService';
 
@@ -32,7 +33,11 @@ function App() {
 
   return (
     <>
+    	<div id="logo-container">
+	      <img src="/image/pintronlogo.png" id="logo"/>
+	    </div>
     <h3>PINGTRON</h3>
+    <ReviewForm/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     </>
   );

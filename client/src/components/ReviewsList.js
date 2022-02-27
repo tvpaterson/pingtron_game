@@ -5,7 +5,11 @@ const ReviewsList = ({ reviews, removeReview }) => {
     return <ReviewCard review={review} key={review._id} removeReview = {removeReview}/>;
   });
 
-  return <>{reviewsList}</>;
+  return(
+    <>
+    {reviewsList}
+    </>
+  )
 };
 
 export default ReviewsList;

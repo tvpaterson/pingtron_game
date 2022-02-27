@@ -9,17 +9,17 @@ const ReviewForm = ({addReview}) => {
         setFormData(formData);
     }
 
-    const onSubmit = (e) =>{
-        e.preventDefault();
-        postSighting(formData).then((data)=>{
-            addSighting(data);
-        })
-    }
+    // const onSubmit = (e) =>{
+    //     e.preventDefault();
+    //     postReview(formData).then((data)=>{
+    //         addReview(data);
+    //     })
+    // }
 
     return (
         <div id="review-container">
 
-                    <form onSubmit={onSubmit} className="reviewForm">
+                    <form className="reviewForm">
                         
                         
                         <label>Name:</label>
