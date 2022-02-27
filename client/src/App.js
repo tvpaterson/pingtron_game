@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
 
-import {getReviews} from './components/ReviewService';
+import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
 function App() {
 
