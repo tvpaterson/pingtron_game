@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:5000/api/reviews"
+const baseURL = "http://localhost:5000/api/reviews/"
 
 export const getReviews = () => {
     return fetch(baseURL)

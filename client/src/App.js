@@ -22,13 +22,11 @@ function App() {
     setReviews(temp);
   }
 
-  const removeReview = (id) => {
-    const temp = reviews.map(r => r);
-    const indexToDel = temp.map(r => r._id).indexOf(id);
-    console.log(indexToDel);
-    
-    temp.splice(indexToDel, 1);
-    setReviews(temp);
+  const removeReview = idToDelete => {
+        console.log(idToDelete);
+        deleteReview(idToDelete);
+
+        setReviews(reviews.filter(review => review._id !== idToDelete));
     }
 
   return (
