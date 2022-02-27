@@ -17,10 +17,9 @@ function App() {
   }, []);
 
   const addReview = (review) => {
-    let temp = reviews.map(r => r);
-    temp.push(review);
-    setReviews(temp);
-  }
+    postReview(review)
+      .then(savedReview => setReviews([ ...reviews, savedReview ]));
+  };
 
   const removeReview = idToDelete => {
         console.log(idToDelete);
@@ -32,10 +31,10 @@ function App() {
   return (
     <>
     	<div id="logo-container">
-	      <img src="/image/pintronlogo.png" id="logo"/>
+	      <img src="/image/pintronlogo.png" id="logo" alt="chungus"/>
 	    </div>
     <h3>PINGTRON</h3>
-    <ReviewForm/>
+    <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     </>
   );

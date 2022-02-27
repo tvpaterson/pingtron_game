@@ -2,46 +2,55 @@ import {useState} from "react";
 
 const ReviewForm = ({addReview}) => {
 
-    const [formData, setFormData] = useState({})
+    const [name, setName] = useState("");
+    const [rating, setRating] = useState("");
+    const [review, setReview] = useState("");
+  
+    const handleNameChange = (e) => setName(e.target.value);
+    const handleRatingChange = (e) => setRating(e.target.value);
+    const handleReviewChange = (e) => setReview(e.target.value);
 
-    const onChange = (e) =>{
-        formData[e.target.id] = e.target.value;
-        setFormData(formData);
-    }
-
-    // const onSubmit = (e) =>{
-    //     e.preventDefault();
-    //     postReview(formData).then((data)=>{
-    //         addReview(data);
-    //     })
-    // }
+    const onSubmit = e =>{
+        e.preventDefault();
+        addReview({
+            name: name,
+            rating: rating,
+            review: review
+          })
+    };
 
     return (
         <div id="review-container">
 
-                    <form className="reviewForm">
+                    <form onSubmit={onSubmit} className="reviewForm">
                         
                         
                         <label>Name:</label>
-                        <input onChange={onChange} type="text" name="player_name" required/>
+                        <input
+                            type="text"
+                            name="name"
+                            value={name}
+                            required
+                            onChange={handleNameChange}
+                            />
                         
-                        <textarea placeholder="Please write a review of our game!"name="comments" maxlength="500"></textarea>
+                        <textarea placeholder="Please write a review of our game!" name="review" value={review} maxLength="500" onChange={handleReviewChange}></textarea>
                         
                         
                         <label>Rating:</label>
                         <div className="rating">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
+                            <input type="radio" id="star5" name="rating" value="5" onChange={handleRatingChange}/>
+                            <label htmlFor="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rating" value="4" onChange={handleRatingChange}/>
+                            <label htmlFor="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rating" value="3" onChange={handleRatingChange}/>
+                            <label htmlFor="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rating" value="2" onChange={handleRatingChange}/>
+                            <label htmlFor="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rating" value="1" onChange={handleRatingChange}/>
+                            <label htmlFor="star1" title="text">1 star</label>
                         </div>
-                        <button value="submit">Post Review</button>
+                        <button type="submit" name="submit" value="Save">Post Review</button>
                     </form>
 		</div>
     );
