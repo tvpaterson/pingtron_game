@@ -1,6 +1,8 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
+import { deleteReview } from './components/ReviewService';
+import { postReview } from './components/ReviewService';
 
 import {getReviews} from './components/ReviewService';
 
@@ -21,13 +23,11 @@ function App() {
     setReviews(temp);
   }
 
-  const removeReview = (id) => {
-    const temp = reviews.map(r => r);
-    const indexToDel = temp.map(r => r._id).indexOf(id);
-    console.log(indexToDel);
-    
-    temp.splice(indexToDel, 1);
-    setReviews(temp);
+  const removeReview = idToDelete => {
+        console.log(idToDelete);
+        deleteReview(idToDelete);
+
+        setReviews(reviews.filter(review => review._id !== idToDelete));
     }
 
   return (

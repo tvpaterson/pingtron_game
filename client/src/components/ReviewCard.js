@@ -1,12 +1,11 @@
 import { deleteReview } from "./ReviewService";
 
 const ReviewCard = ({ review, removeReview }) => {
-  console.log(review);
+  
   const handleDelete = () => {
-      deleteReview(review._id).then(()=>{
           removeReview(review._id);
-      })
   }
+
   const starRating = () => {
     const star = "⭐️";
     return star.repeat(review.rating);
