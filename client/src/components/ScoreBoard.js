@@ -16,7 +16,7 @@ const ScoreBoard = () => {
                             </thead>
                             <tbody>
                                     <tr>
-                                        <td className="column1">{player.name}</td>
+                                        <td className="column1">Player</td>
                                         <td className="column2">50</td>
                                     </tr>
                                 </tbody>
