@@ -4,6 +4,7 @@ import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
 import Game from './components/Game';
 import ScoreBoard from './components/ScoreBoard';
+import ReactAudioPlayer from 'react-audio-player';
 
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
@@ -39,6 +40,13 @@ function App() {
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     <ScoreBoard players={reviews} />
     <footer>&#169; Sneed Co. All Rights Reserved</footer>
+    <div className="audiothing">
+      <ReactAudioPlayer
+  src={require("./sounds/PingtronRealFlattened.mp3")}
+  autoPlay
+  controls
+/>
+</div>
     </>
   );
 }
