@@ -80,13 +80,11 @@
 
 /* ----- SCOREBOARD STYLING ----- */
 
-/* ----- GAME STYLING ------ */
 
-canvas {
-  background: rgb(0, 56, 56);
-  display: block;
-  margin: 0 auto;
-  border-radius: 10px;
-  background-image: url("../public/cyberpunk-street.png");
-  background-size: cover;
+
+/* ----- MISC ----- */
+
+footer{
+  text-align: end;
+  padding: 25px 25px 50px 0px;
 }

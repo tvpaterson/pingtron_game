@@ -38,6 +38,7 @@ function App() {
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     <ScoreBoard players={reviews} />
+    <footer>&#169; Sneed Co. All Rights Reserved</footer>
     </>
   );
 }
