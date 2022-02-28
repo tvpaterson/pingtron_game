@@ -35,10 +35,13 @@
     <body>
     
         <canvas id="myCanvas" width="1080" height="600"></canvas>
+        <img id="paddleSprite" src="./paddle1.png">
     
         <script>
+
             const canvas = document.getElementById("myCanvas");
             const ctx = canvas.getContext("2d");
+            const paddle = document.getElementById("paddleSprite");
 
             function getRandomInt(max) {
               return Math.floor(Math.random() * max);
@@ -101,9 +104,7 @@
     
             function drawPlayerOne() {
                 ctx.beginPath();
-                ctx.rect(10, paddleOneY, paddleWidth, paddleHeight);
-                ctx.fillStyle = "rgb(200, 0, 0)";
-                ctx.fill();
+                ctx.drawImage(paddle, 10, paddleOneY);
                 ctx.closePath();
             };
     
