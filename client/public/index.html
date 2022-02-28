@@ -39,9 +39,13 @@
         <script>
             const canvas = document.getElementById("myCanvas");
             const ctx = canvas.getContext("2d");
+
+            function getRandomInt(max) {
+              return Math.floor(Math.random() * max);
+            }
     
-            var x = canvas.width/2;
-            var y = canvas.height-30;
+            var x = getRandomInt(1800);
+            var y = getRandomInt(600);
     
             let dx = 4;
             let dy = -4;
@@ -58,6 +62,7 @@
             let aPressed = false;
             let dPressed = false;
             let spacePressed = false;
+            let shiftPressed = false;
     
             // var brickRowCount = 10;
             // var brickColumnCount = 15;
@@ -79,6 +84,14 @@
             var PlayerTwoScore = 0;
     
             function drawBall() {
+                ctx.beginPath();
+                ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            };
+    
+            function drawNewBall() {
                 ctx.beginPath();
                 ctx.arc(x, y, ballRadius, 0, Math.PI*2);
                 ctx.fillStyle = "#0095DD";
@@ -171,14 +184,6 @@
     
             document.addEventListener("keydown", keyDownHandler, false);
             document.addEventListener("keyup", keyUpHandler, false);
-            document.addEventListener("mousemove", mouseMoveHandler, false);
-    
-            function mouseMoveHandler(e) {
-                var relativeX = e.clientX - canvas.offsetLeft;
-                if(relativeX > 0 && relativeX < canvas.width) {
-                    paddleX = relativeX - paddleWidth/2;
-                }
-            }
     
             function keyDownHandler(e) {
                 if(e.key == "Right" || e.key == "ArrowRight") {
@@ -190,7 +195,10 @@
                     aPressed = true;
                 } else if (e.key == "d" || e.keyCode == "68") {
                     dPressed = true;
-                } else if (e.key == "Enter" || e.key == "" || e.keyCode == 32) {
+                } else if (e.key == "Shift" || e.keyCode == "16") {
+                    shiftPressed = true;
+                    fireDisc();
+                } else if (e.key == "Enter" || e.keyCode == 13) {
                     spacePressed = true;
                     startGame();
                 }
@@ -205,6 +213,8 @@
                     aPressed = false;
                 } else if (e.key == "d" || e.keyCode == "68") {
                     dPressed = false;
+                } else if (e.key == "Shift" || e.keyCode == "16") {
+                  shiftPressed = false;
                 } else if (e.key == "Enter" || e.keyCode == 32) {
                     spacePressed = false;
                 }
@@ -226,6 +236,15 @@
             //         }
             //     }
             // }
+
+            function drawStartScreen() {
+              ctx.rect(0, 0, canvas.width, canvas.height)
+              ctx.fillStyle = "black";
+              ctx.fill();
+              ctx.font = "64px Orbitron";
+              ctx.fillStyle = "#0095DD";
+              ctx.fillText("Press ENTER to start", canvas.width/2, canvas.height/2);
+            }
     
             function drawTopHUD() {
                 ctx.beginPath();
@@ -261,13 +280,30 @@
             // }
     
             function startGame() {
-                if (spacePressed == true){
+                if (spacePressed === true){
                     console.log("Spacebar pressed.")
                     draw();
                 }
             }
+
+            function fireDisc() {
+                drawNewBall()
+
+                if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+    
+                if(y + dy < ballRadius+20 || y + dy > canvas.height-ballRadius-20) {
+                    dy = -dy;
+                }
+                       
+                x += dx;
+                y += dy;
+                requestAnimationFrame(fireDisc);
+              }
             
-            startGame();
+            // startGame();
+            drawStartScreen();
         </script>
         
     </body>
