@@ -5,18 +5,25 @@ const ReviewForm = ({addReview}) => {
     const [name, setName] = useState("");
     const [rating, setRating] = useState("");
     const [review, setReview] = useState("");
+    const [score, setScore] = useState("");
   
     const handleNameChange = (e) => setName(e.target.value);
     const handleRatingChange = (e) => setRating(e.target.value);
     const handleReviewChange = (e) => setReview(e.target.value);
+    const handleScoreChange = (e) => setScore(e.target.value);
 
     const onSubmit = e =>{
         e.preventDefault();
         addReview({
             name: name,
+            score: score,
             rating: rating,
             review: review
-          })
+          });
+          setName("");
+          setScore("");
+          setRating("");
+          setReview("");
     };
 
     return (
@@ -32,6 +39,15 @@ const ReviewForm = ({addReview}) => {
                             value={name}
                             required
                             onChange={handleNameChange}
+                            />
+                        
+                        <label>High Score:</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={score}
+                            required
+                            onChange={handleScoreChange}
                             />
                         
                         <textarea placeholder="Please write a review of our game!" name="review" value={review} maxLength="500" onChange={handleReviewChange}></textarea>
