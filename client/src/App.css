@@ -84,6 +84,10 @@
 
 /* ----- MISC ----- */
 
+#assets{
+  display: none;
+}
+
 footer{
   text-align: end;
   padding: 25px 25px 50px 0px;
