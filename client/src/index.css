@@ -1,1 +1,6 @@
-
+body{
+    background-image: url("../public/thegrid_1.jpeg");
+    background-size: contain;
+    font-family: Orbitron;
+    color: blanchedalmond;
+}
