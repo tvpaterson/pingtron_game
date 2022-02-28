@@ -8,9 +8,9 @@ const ScoreBoard = () => {
                     <div className=" table100">
                         <table>
                             <thead>
-                                <tr class="table100-head">
-                                    <th class="column1">Player</th>
-                                    <th class="column2">Score</th>
+                                <tr className="table100-head">
+                                    <th className="column1">Player</th>
+                                    <th className="column2">Score</th>
     
                                 </tr>
                             </thead>
