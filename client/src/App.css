@@ -36,32 +36,32 @@
     color: #c59b08;
   }
   
-  .myForm {
+  .review-container {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 0.8em;
     width: 30em;
     padding: 1em;
     } 
     
-    .myForm label {
+    .reviewForm label {
     font-weight: bold;
     text-align: left;
     display: block;
     }
     
-    .myForm input,
-    .myForm textarea {
+    .reviewForm input,
+    .reviewForm textarea {
     border: 1px solid #ccc;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   
     }
     
-    .myForm textarea {
+    .reviewForm textarea {
     height: 100px;
     width: 100%;
     }
     
-    .myForm button {
+    .reviewForm button {
     padding: 1em;
     border-radius: 0.5em;
     background: #eee;
@@ -69,7 +69,7 @@
     font-weight: bold;
     }
     
-    .myForm button:hover {
+    .reviewForm button:hover {
     background: #ccc;
     cursor: pointer;
     }
@@ -82,9 +82,3 @@
 
 
 
-/* ----- MISC ----- */
-
-footer{
-  text-align: end;
-  padding: 25px 25px 50px 0px;
-}
