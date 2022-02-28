@@ -37,7 +37,7 @@ function App() {
     <h3>PINGTRON</h3>
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
-    <ScoreBoard/>
+    <ScoreBoard players={reviews} />
     </>
   );
 }

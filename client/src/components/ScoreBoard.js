@@ -1,6 +1,15 @@
 
 
-const ScoreBoard = () => {
+const ScoreBoard = ({players}) => {
+    const playerList = players.map((player) => {
+        return (
+            <tr key={player._id}>
+                <td className="column1">{player.name}</td>
+                <td className="column2">{player.score}</td>
+            </tr>
+        )
+    })
+
     return (
         <div className="scoreboard-container">
             <div className="container-table100">
@@ -11,14 +20,10 @@ const ScoreBoard = () => {
                                 <tr className="table100-head">
                                     <th className="column1">Player</th>
                                     <th className="column2">Score</th>
-    
                                 </tr>
                             </thead>
-                            <tbody>
-                                    <tr>
-                                        <td className="column1">Player</td>
-                                        <td className="column2">50</td>
-                                    </tr>
+                                <tbody>
+                                    {playerList}
                                 </tbody>
                             </table>
                         </div>
