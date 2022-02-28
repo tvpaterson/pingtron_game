@@ -1,8 +1,9 @@
 body{
     background-image: url("../public/thegrid_1.jpeg");
-    background-size: contain;
+    background-size: cover;
     font-family: Orbitron;
     color: blanchedalmond;
+    background-attachment: fixed;
 }
 
 canvas {
