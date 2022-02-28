@@ -35,13 +35,17 @@
     <body>
     
         <canvas id="myCanvas" width="1080" height="600"></canvas>
-        <img id="paddleSprite" src="./paddle1.png">
+        <img id="paddleSpriteOne" src="./paddle_1.png">
+        <img id="paddleSpriteTwo" src="./paddle_2.png">
+        <img id="disc" src="./disc.png">
     
         <script>
 
             const canvas = document.getElementById("myCanvas");
             const ctx = canvas.getContext("2d");
-            const paddle = document.getElementById("paddleSprite");
+            const paddleOne = document.getElementById("paddleSpriteOne");
+            const paddleTwo = document.getElementById("paddleSpriteTwo");
+            const disc = document.getElementById("disc");
 
             function getRandomInt(max) {
               return Math.floor(Math.random() * max);
@@ -88,9 +92,8 @@
     
             function drawBall() {
                 ctx.beginPath();
-                ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-                ctx.fillStyle = "#0095DD";
-                ctx.fill();
+                ctx.arc(x, y, disc, 0, Math.PI*2);
+                ctx.drawImage(disc, x, y);
                 ctx.closePath();
             };
     
@@ -104,15 +107,13 @@
     
             function drawPlayerOne() {
                 ctx.beginPath();
-                ctx.drawImage(paddle, 10, paddleOneY);
+                ctx.drawImage(paddleOne, 10, paddleOneY);
                 ctx.closePath();
             };
     
             function drawPlayerTwo() {
                 ctx.beginPath();
-                ctx.rect(canvas.width-paddleWidth-10, paddleTwoY, paddleWidth, paddleHeight);
-                ctx.fillStyle = "rgb(200, 0, 0)";
-                ctx.fill();
+                ctx.drawImage(paddleTwo, canvas.width-paddleWidth-10, paddleTwoY);
                 ctx.closePath();
             };
     
