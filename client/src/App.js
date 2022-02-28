@@ -2,6 +2,7 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
+import Game from './components/Game';
 import ScoreBoard from './components/ScoreBoard';
 
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
@@ -34,7 +35,6 @@ function App() {
     	<div id="logo-container">
 	      <img src="/image/pintronlogo.png" id="logo" alt="chungus"/>
 	    </div>
-    <h3>PINGTRON</h3>
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     <ScoreBoard players={reviews} />
