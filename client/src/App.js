@@ -2,6 +2,7 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
+import ScoreBoard from './components/ScoreBoard';
 
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
@@ -36,6 +37,7 @@ function App() {
     <h3>PINGTRON</h3>
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
+    <ScoreBoard/>
     </>
   );
 }
