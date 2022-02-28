@@ -1,1 +1,16 @@
+body{
+    background-image: url("../public/thegrid_1.jpeg");
+    background-size: contain;
+    font-family: Orbitron;
+    color: blanchedalmond;
+}
 
+canvas {
+    background: rgb(0, 56, 56);
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: solid 5px cyan;
+    background-image: url("../public/cyberpunk-street.png");
+    background-size: cover;
+  }
