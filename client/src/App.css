@@ -81,7 +81,9 @@
     }
 
     .reviews-list-container {
-      /* height: 50px; */
+      margin: 10px;
+      max-width: 100%;
+      float: right;
     }
 
 
