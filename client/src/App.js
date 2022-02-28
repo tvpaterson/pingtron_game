@@ -5,6 +5,8 @@ import ReviewForm from './components/ReviewForm';
 import Game from './components/Game';
 import ScoreBoard from './components/ScoreBoard';
 
+
+
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
 function App() {
@@ -32,9 +34,6 @@ function App() {
 
   return (
     <>
-    	<div id="logo-container">
-	      <img src="/image/pintronlogo.png" id="logo" alt="chungus"/>
-	    </div>
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     <ScoreBoard players={reviews} />
