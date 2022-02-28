@@ -46,7 +46,7 @@
     .reviewForm label {
     font-weight: bold;
     text-align: left;
-    display: block;
+    /* display: block; */
     }
     
     .reviewForm input,
@@ -59,12 +59,13 @@
     .reviewForm textarea {
     height: 100px;
     width: 100%;
+    background-color: transparent;
     }
     
     .reviewForm button {
     padding: 1em;
     border-radius: 0.5em;
-    background: #eee;
+    background: #ccc;
     border: none;
     font-weight: bold;
     }
@@ -72,6 +73,15 @@
     .reviewForm button:hover {
     background: #ccc;
     cursor: pointer;
+    }
+
+    .form-container {
+      float: left;
+      width: 600px;
+    }
+
+    .reviews-list-container {
+      /* height: 50px; */
     }
 
 
