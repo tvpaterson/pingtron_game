@@ -5,6 +5,10 @@ window.onload = function () {
     const disc = document.getElementById("disc");
     const brick = document.getElementById("brick");
     const logo = document.getElementById("title-logo");
+    const ahegao = document.getElementById("easter-egg");
+    const bounce = new Audio("./bounce.mp3");
+    const mysterySound = new Audio("./mystery_sound.mp3");
+    const music = new Audio("./PingtronRealFlattened.mp3");
 
     let game_running = true;
 
@@ -76,24 +80,29 @@ window.onload = function () {
     function draw() {
         if (game_running){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        playBGM();
         drawBricks();
         drawBall();
         drawPaddle();
         drawTopHUD();
         drawScore();
         drawLives();
+        easterEgg();
         collisionDetection();
        
 
         if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
             dx = -dx;
+            bounce.play();
         }
 
         if(y + dy < ballRadius) {
             dy = -dy;
+            bounce.play();
         } else if(y + dy > canvas.height-ballRadius) {
             if(x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
+                bounce.play();
             } else {
                 lives--;
                 if(!lives) {
@@ -180,6 +189,7 @@ window.onload = function () {
                     dy = -dy;
                     b.status = 0;
                     score++;
+                    bounce.play();
                     if(score === brickRowCount*brickColumnCount) {
                         game_running = false()
                         drawWinScreen()
@@ -195,7 +205,7 @@ window.onload = function () {
         ctx.fill();
         ctx.drawImage(logo, 150, 50);
         ctx.font = "64px Orbitron";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#ff6cf2";
         ctx.fillText("Press ENTER to start", 150, 500);
         }
 
@@ -249,6 +259,20 @@ window.onload = function () {
             drawGameOver();
         }
     }
+
+    function playBGM() {
+        if(game_running === true){
+            music.play()
+        }
+    }
+
+    function easterEgg() {
+        if(score === 69) {
+            ctx.drawImage(ahegao, 0, 0);
+            mysterySound.play()
+            }
+        }
     
     drawStartScreen();
+    
 }
