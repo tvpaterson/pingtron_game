@@ -84,6 +84,10 @@
       margin: 10px;
       max-width: 100%;
       float: right;
+      background-color: rgba(49, 49, 49, 0.8);
+      border: cyan solid 5px;
+      border-radius: 5px;
+      padding: 5px;
     }
 
 
@@ -186,13 +190,18 @@ tbody tr {
 }
 
 
-
+#logo-container{
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 #assets{
   display: none;
 }
 
-footer{
+#footer{
   text-align: end;
   padding: 25px 25px 50px 0px;
 }

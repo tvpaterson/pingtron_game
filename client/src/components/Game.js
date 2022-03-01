@@ -172,7 +172,7 @@ window.onload = function () {
     ctx.fill();
     ctx.font = "64px Orbitron";
     ctx.fillStyle = "#0095DD";
-    ctx.fillText("Press ENTER to start", canvas.width/2, canvas.height/2);
+    ctx.fillText("Press ENTER to start", 150, canvas.height/2);
     }
 
     function drawTopHUD() {

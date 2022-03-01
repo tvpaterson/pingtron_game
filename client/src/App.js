@@ -35,7 +35,7 @@ function App() {
   return (
     <>
     	<div id="logo-container">
-	      <img src="/image/pingtronlogo.png" id="logo" alt="chungus"/>
+	      <img src="./pingtronlogo.png" width="1000" id="logo" alt="chungus"/>
 	    </div>
     <canvas id="myCanvas" width="1080" height="600"></canvas>
     <script src="./components/Game.js"></script>
@@ -44,21 +44,19 @@ function App() {
       <img id="paddleSpriteTwo" src="./paddle_2.png" alt="paddle-2-sprite"/>
       <img id="disc" src="./disc.png" alt="disc-sprite"/>
     </div>
-    <ReviewForm addReview={addReview}/>
-    {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
-    <ScoreBoard players={reviews} />
     <div>
       <ScoreBoard players={reviews} />
-    <div class="review-main-container">
-      <div class="form-container">
-        <ReviewForm addReview={addReview}/>
-      </div>
-      <div class="reviews-list-container">
-        {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
+      <div class="review-main-container">
+        <div class="form-container">
+          <ReviewForm addReview={addReview}/>
+        </div>
+        <div class="reviews-list-container">
+          {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
+        </div>
       </div>
     </div>
-    <footer>&#169; Sneed Co. All Rights Reserved</footer>
-    </div>
+    <footer id="footer">&#169; Sneed Co. All Rights Reserved</footer>
+    </>
   );
 }
 
