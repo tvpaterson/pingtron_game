@@ -5,6 +5,8 @@ import ReviewForm from './components/ReviewForm';
 import ScoreBoard from './components/ScoreBoard';
 import Game from './components/Game';
 
+
+
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
 function App() {
@@ -45,8 +47,18 @@ function App() {
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
     <ScoreBoard players={reviews} />
+    <div>
+      <ScoreBoard players={reviews} />
+    <div class="review-main-container">
+      <div class="form-container">
+        <ReviewForm addReview={addReview}/>
+      </div>
+      <div class="reviews-list-container">
+        {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
+      </div>
+    </div>
     <footer>&#169; Sneed Co. All Rights Reserved</footer>
-    </>
+    </div>
   );
 }
 
