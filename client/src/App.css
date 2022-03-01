@@ -1,9 +1,16 @@
 
 /* ----- REVIEW FORM STYLING ----- */
 textarea{
-
 color: white;
 }
+
+input[type="radio"] {
+  left : -10000px;
+  position: absolute;
+  top : -10000px;
+  visibility: hidden;
+}
+
 .rating {
     float: left;
     height: 46px;
@@ -21,6 +28,7 @@ color: white;
     cursor:pointer;
     font-size:30px;
     color:#ccc;
+    
   }
   .rating:not(:checked) > label:before {
     content: '★ ';
@@ -37,6 +45,7 @@ color: white;
   .rating > input:checked ~ label:hover,
   .rating > input:checked ~ label:hover ~ label,
   .rating > label:hover ~ input:checked ~ label {
+    
     color: #c59b08;
   }
   
