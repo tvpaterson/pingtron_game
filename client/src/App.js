@@ -39,6 +39,7 @@ function App() {
       <img id="disc" src="./disc.png" alt="disc-sprite"/>
       <img id="brick" src="./brick.png" alt="brick-sprite"/>
       <img id="title-logo" src="./logo.png" alt="logo-sprite" width="500"/>
+      <img id="easter-egg" src="./ahegao.jpeg" alt="mystery"/>
     </div>
     <div>
       <ScoreBoard players={reviews} />
@@ -51,9 +52,9 @@ function App() {
         </div>
       </div>
     </div>
-    <audio controls loop>
+    {/* <audio controls loop>
       <source src="./PingtronRealFlattened.mp3" type="audio/mpeg"/>
-    </audio>
+    </audio> */}
         <footer id="footer">&#169; Sneed Co. All Rights Reserved</footer>
     </>
   );

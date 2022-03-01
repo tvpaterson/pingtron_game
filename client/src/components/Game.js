@@ -5,20 +5,24 @@ window.onload = function () {
     const disc = document.getElementById("disc");
     const brick = document.getElementById("brick");
     const logo = document.getElementById("title-logo");
+    const ahegao = document.getElementById("easter-egg");
+    const bounce = new Audio("./bounce.mp3");
+    const mysterySound = new Audio("./mystery_sound.mp3");
+    const music = new Audio("./PingtronRealFlattened.mp3");
 
     let game_running = true;
 
-    var x = canvas.width/2;
-    var y = canvas.height-30;
+    let x = canvas.width/2;
+    let y = canvas.height-30;
 
-    var dx = 4;
-    var dy = -4;
+    let dx = 4;
+    let dy = -4;
 
-    var ballRadius = 10;
+    let ballRadius = 10;
 
-    var paddleHeight = 10;
-    var paddleWidth = 75;
-    var paddleX = (canvas.width-paddleWidth) / 2;
+    let paddleHeight = 10;
+    let paddleWidth = 75;
+    let paddleX = (canvas.width-paddleWidth) / 2;
 
     let rightPressed = false;
     let leftPressed = false;
@@ -26,18 +30,18 @@ window.onload = function () {
     let retryPressed = false
 
 
-    var brickRowCount = 10;
-    var brickColumnCount = 20;
-    var brickWidth = 40;
-    var brickHeight = 10;
-    var brickPadding = 10;
-    var brickOffsetTop = 40;
-    var brickOffsetLeft = 30;
+    let brickRowCount = 10;
+    let brickColumnCount = 21;
+    let brickWidth = 40;
+    let brickHeight = 10;
+    let brickPadding = 10;
+    let brickOffsetTop = 40;
+    let brickOffsetLeft = 30;
 
-    var bricks = [];
-    for(var c=0; c<brickColumnCount; c++) {
+    let bricks = [];
+    for(let c=0; c<brickColumnCount; c++) {
         bricks[c] = [];
-        for(var r=0; r<brickRowCount; r++) {
+        for(let r=0; r<brickRowCount; r++) {
             bricks[c][r] = { x: 0, y: 0, status: 1 };
         }
     }
@@ -76,24 +80,29 @@ window.onload = function () {
     function draw() {
         if (game_running){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        playBGM();
         drawBricks();
         drawBall();
         drawPaddle();
         drawTopHUD();
         drawScore();
         drawLives();
+        easterEgg();
         collisionDetection();
        
 
         if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
             dx = -dx;
+            bounce.play();
         }
 
         if(y + dy < ballRadius) {
             dy = -dy;
+            bounce.play();
         } else if(y + dy > canvas.height-ballRadius) {
             if(x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
+                bounce.play();
             } else {
                 lives--;
                 if(!lives) {
@@ -124,6 +133,8 @@ window.onload = function () {
         x += dx;
         y += dy;
         requestAnimationFrame(draw);
+        } else if(score === brickRowCount * brickColumnCount) {
+            drawWinScreen();
         } else {
             drawGameOver();
         }
@@ -178,9 +189,10 @@ window.onload = function () {
                     dy = -dy;
                     b.status = 0;
                     score++;
+                    bounce.play();
                     if(score === brickRowCount*brickColumnCount) {
-                        alert("A WINNER IS YOU!");
-                        document.location.reload();
+                        game_running = false()
+                        drawWinScreen()
                     }
                 }
             }
@@ -193,7 +205,7 @@ window.onload = function () {
         ctx.fill();
         ctx.drawImage(logo, 150, 50);
         ctx.font = "64px Orbitron";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#ff6cf2";
         ctx.fillText("Press ENTER to start", 150, 500);
         }
 
@@ -204,6 +216,15 @@ window.onload = function () {
         ctx.font = "132px Alegreya SC";
         ctx.fillStyle = "red";
         ctx.fillText("You Died", 275, canvas.height/2);
+        }
+
+    function drawWinScreen() {
+        ctx.rect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.font = "112px Alegreya SC";
+        ctx.fillStyle = "yellow";
+        ctx.fillText("A Winner Is You", 150, canvas.height/2);
         }
 
     function drawTopHUD() {
@@ -238,6 +259,20 @@ window.onload = function () {
             drawGameOver();
         }
     }
+
+    function playBGM() {
+        if(game_running === true){
+            music.play()
+        }
+    }
+
+    function easterEgg() {
+        if(score === 69) {
+            ctx.drawImage(ahegao, 0, 0);
+            mysterySound.play()
+            }
+        }
     
     drawStartScreen();
+    
 }
