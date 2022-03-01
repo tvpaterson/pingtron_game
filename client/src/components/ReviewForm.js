@@ -40,7 +40,7 @@ const ReviewForm = ({addReview}) => {
                             required
                             onChange={handleNameChange}
                             />
-                        <br/>
+                        
                         <label>High Score:</label>
                         <input
                             type="text"
