@@ -40,9 +40,10 @@ function App() {
     <canvas id="myCanvas" width="1080" height="600"></canvas>
     <script src="./components/Game.js"></script>
     <div id="assets">
-      <img id="paddleSpriteOne" src="./paddle_1.png" alt="paddle-1-sprite"/>
-      <img id="paddleSpriteTwo" src="./paddle_2.png" alt="paddle-2-sprite"/>
+      <img id="paddle" src="./paddle.png" alt="paddle-sprite"/>
       <img id="disc" src="./disc.png" alt="disc-sprite"/>
+      <img id="brick" src="./brick.png" alt="brick-sprite"/>
+      <img id="title-logo" src="./logo.png" alt="logo-sprite" width="500"/>
     </div>
     <div>
       <ScoreBoard players={reviews} />
