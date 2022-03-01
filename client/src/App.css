@@ -5,23 +5,20 @@ color: white;
 }
 
 input[type="radio"] {
-  left : -10000px;
-  position: absolute;
-  top : -10000px;
   visibility: hidden;
 }
 
 .rating {
-    float: left;
+    
     height: 46px;
-    padding: 0 10px;
+    /* padding: 0 10px; */
   }
   .rating:not(:checked) > input {
     position:absolute;
     top:-9999px;
   }
   .rating:not(:checked) > label {
-    float:right;
+    float:left;
     width:1em;
     overflow:hidden;
     white-space:nowrap;
@@ -215,6 +212,11 @@ tbody tr {
 }
 
 #footer{
-  text-align: end;
-  padding: 25px 25px 50px 0px;
+  margin-top: 1rem;
+  padding: 100px;
+  display: flex;
 }
+ audio{
+   padding-top: 1rem;
+   display: flex;
+ }
