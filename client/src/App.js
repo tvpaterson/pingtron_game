@@ -52,9 +52,9 @@ function App() {
         </div>
       </div>
     </div>
-    <audio controls loop>
+    {/* <audio controls loop>
       <source src="./PingtronRealFlattened.mp3" type="audio/mpeg"/>
-    </audio>
+    </audio> */}
         <footer id="footer">&#169; Sneed Co. All Rights Reserved</footer>
     </>
   );
