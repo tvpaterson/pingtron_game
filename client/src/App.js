@@ -2,8 +2,8 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
-import Game from './components/Game';
 import ScoreBoard from './components/ScoreBoard';
+import Game from './components/Game';
 
 
 
@@ -33,6 +33,20 @@ function App() {
     }
 
   return (
+    <>
+    	<div id="logo-container">
+	      <img src="/image/pingtronlogo.png" id="logo" alt="chungus"/>
+	    </div>
+    <canvas id="myCanvas" width="1080" height="600"></canvas>
+    <script src="./components/Game.js"></script>
+    <div id="assets">
+      <img id="paddleSpriteOne" src="./paddle_1.png" alt="paddle-1-sprite"/>
+      <img id="paddleSpriteTwo" src="./paddle_2.png" alt="paddle-2-sprite"/>
+      <img id="disc" src="./disc.png" alt="disc-sprite"/>
+    </div>
+    <ReviewForm addReview={addReview}/>
+    {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
+    <ScoreBoard players={reviews} />
     <div>
       <ScoreBoard players={reviews} />
     <div class="review-main-container">
