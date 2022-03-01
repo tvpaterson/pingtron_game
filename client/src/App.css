@@ -1,5 +1,9 @@
 
 /* ----- REVIEW FORM STYLING ----- */
+textarea{
+
+color: white;
+}
 .rating {
     float: left;
     height: 46px;
