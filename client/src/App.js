@@ -4,7 +4,6 @@ import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
 import ScoreBoard from './components/ScoreBoard';
 import Game from './components/Game';
-import ReactAudioPlayer from 'react-audio-player';
 
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
@@ -33,9 +32,6 @@ function App() {
 
   return (
     <>
-    	<div id="logo-container">
-	      <img src="./pingtronlogo.png" width="1000" id="logo" alt="chungus"/>
-	    </div>
     <canvas id="myCanvas" width="1080" height="600"></canvas>
     <script src="./components/Game.js"></script>
     <div id="assets">
@@ -55,13 +51,13 @@ function App() {
         </div>
       </div>
     </div>
-      <div className="audiothing">
+      {/* <div className="audiothing">
         <ReactAudioPlayer
         src={require("./sounds/PingtronRealFlattened.mp3")}
         autoPlay
         controls
         />
-      </div>
+      </div> */}
         <footer id="footer">&#169; Sneed Co. All Rights Reserved</footer>
     </>
   );

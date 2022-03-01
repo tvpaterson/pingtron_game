@@ -1,5 +1,3 @@
-import { deleteReview } from "./ReviewService";
-
 const ReviewCard = ({ review, removeReview }) => {
   
   const handleDelete = () => {

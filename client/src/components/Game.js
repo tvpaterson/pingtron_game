@@ -23,7 +23,7 @@ window.onload = function () {
     let rightPressed = false;
     let leftPressed = false;
     let enterPressed = false;
-    let rPressed = false
+    let retryPressed = false
 
 
     var brickRowCount = 10;
@@ -151,7 +151,7 @@ window.onload = function () {
             enterPressed = true;
             startGame();
         } else if (e.key === "r" || e.keyCode === 82) {
-            rPressed = true;
+            retryPressed = true;
             game_running = true;
             lives = 3
         } 
@@ -166,7 +166,7 @@ window.onload = function () {
         } else if (e.key === "Enter" || e.keyCode === 13) {
             enterPressed = false;
         } else if (e.key === "r" || e.keyCode === 82) {
-            rPressed = false;
+            retryPressed = false;
         } 
     }
 
