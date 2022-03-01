@@ -8,17 +8,21 @@ input[type="radio"] {
   visibility: hidden;
 }
 
+
 .rating {
-    
+    justify-content: left;
     height: 46px;
-    /* padding: 0 10px; */
+    padding: 0 10px;
+    float: left;
   }
   .rating:not(:checked) > input {
     position:absolute;
     top:-9999px;
   }
   .rating:not(:checked) > label {
-    float:left;
+    float:right;
+    text-align: left;
+    justify-content: left;
     width:1em;
     overflow:hidden;
     white-space:nowrap;
@@ -213,8 +217,7 @@ tbody tr {
 
 #footer{
   margin-top: 1rem;
-  padding: 100px;
-  display: flex;
+  display: block;
 }
  audio{
    padding-top: 1rem;
