@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import ReviewsList from './components/ReviewsList';
 import ReviewForm from './components/ReviewForm';
 import ScoreBoard from './components/ScoreBoard';
+import Game from './components/Game';
 
 import {getReviews, deleteReview, postReview} from './components/ReviewService';
 
@@ -39,7 +40,7 @@ function App() {
     <div id="assets">
       <img id="paddleSpriteOne" src="./paddle_1.png" alt="paddle-1-sprite"/>
       <img id="paddleSpriteTwo" src="./paddle_2.png" alt="paddle-2-sprite"/>
-      <img id="disc" src="./disc.png" alt="game-sprite"/>
+      <img id="disc" src="./disc.png" alt="disc-sprite"/>
     </div>
     <ReviewForm addReview={addReview}/>
     {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
