@@ -36,42 +36,58 @@
     color: #c59b08;
   }
   
-  .myForm {
+  .review-container {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 0.8em;
     width: 30em;
     padding: 1em;
     } 
     
-    .myForm label {
+    .reviewForm label {
     font-weight: bold;
     text-align: left;
-    display: block;
+    /* display: block; */
     }
     
-    .myForm input,
-    .myForm textarea {
+    .reviewForm input,
+    .reviewForm textarea {
     border: 1px solid #ccc;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   
     }
     
-    .myForm textarea {
+    .reviewForm textarea {
     height: 100px;
     width: 100%;
+    background-color: transparent;
     }
     
-    .myForm button {
+    .reviewForm button {
     padding: 1em;
     border-radius: 0.5em;
-    background: #eee;
+    background: #ccc;
     border: none;
     font-weight: bold;
     }
     
-    .myForm button:hover {
+    .reviewForm button:hover {
     background: #ccc;
     cursor: pointer;
+    }
+
+    .form-container {
+      float: left;
+      width: 600px;
+    }
+
+    .reviews-list-container {
+      margin: 10px;
+      max-width: 100%;
+      float: right;
+      background-color: rgba(49, 49, 49, 0.8);
+      border: cyan solid 5px;
+      border-radius: 5px;
+      padding: 5px;
     }
 
 
@@ -80,11 +96,112 @@
 
 /* ----- SCOREBOARD STYLING ----- */
 
+.scoreboard-container {
+  width: 100%;
+}
+
+.container-table100 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+  float: right;
+}
+
+.wrap-table100 {
+  width: 1170px;
+  float: right;
+}
+
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 92%;
+  margin: 0 auto;
+  position: relative;
+  left: 30px;
+}
+table * {
+  position: relative;
+}
+table td, table th {
+  padding-left: 8px;
+}
+table thead tr {
+  height: 60px;
+  background: linear-gradient(45deg, #1d99ff, #f13800);
+}
+table tbody tr {
+  height: 50px;
+}
+table tbody tr:last-child {
+  border: 0;
+}
+table td, table th {
+  text-align: left;
+}
+table td.l, table th.l {
+  text-align: right;
+}
+table td.c, table th.c {
+  text-align: center;
+}
+table td.r, table th.r {
+  text-align: center;
+}
 
 
-/* ----- MISC ----- */
+.table100-head th{
+  font-family: OpenSans-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
 
-footer{
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.column1 {
+  width: 260px;
+  padding-left: 40px;
+}
+
+.column2 {
+  width: 160px;
+}
+
+.checked {
+  color: rgb(255, 230, 0);
+}
+
+
+#logo-container{
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#assets{
+  display: none;
+}
+
+#footer{
   text-align: end;
   padding: 25px 25px 50px 0px;
 }

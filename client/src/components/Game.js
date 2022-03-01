@@ -1,229 +1,243 @@
-const Pingtron = () => {
-        const canvas = document.getElementById("myCanvas");
-        const ctx = canvas.getContext("2d");
+window.onload = function () {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const paddle = document.getElementById("paddle");
+    const disc = document.getElementById("disc");
+    const brick = document.getElementById("brick");
+    const logo = document.getElementById("title-logo");
 
-        var x = canvas.width/2;
-        var y = canvas.height-30;
+    let game_running = true;
 
-        let dx = 4;
-        let dy = -4;
+    var x = canvas.width/2;
+    var y = canvas.height-30;
 
-        const ballRadius = 10;
+    var dx = 4;
+    var dy = -4;
 
-        const paddleHeight = 75;
-        const paddleWidth = 10;
-        var paddleOneY = (canvas.height-paddleHeight) / 2;
-        var paddleTwoY = (canvas.height-paddleHeight) / 2;
+    var ballRadius = 10;
 
-        let rightPressed = false;
-        let leftPressed = false;
-        let aPressed = false;
-        let dPressed = false;
-        let spacePressed = false;
+    var paddleHeight = 10;
+    var paddleWidth = 75;
+    var paddleX = (canvas.width-paddleWidth) / 2;
 
-        // var brickRowCount = 10;
-        // var brickColumnCount = 15;
-        // var brickWidth = 40;
-        // var brickHeight = 10;
-        // var brickPadding = 10;
-        // var brickOffsetTop = 40;
-        // var brickOffsetLeft = 30;
+    let rightPressed = false;
+    let leftPressed = false;
+    let enterPressed = false;
+    let rPressed = false
 
-        // var bricks = [];
-        // for(var c=0; c<brickColumnCount; c++) {
-        //     bricks[c] = [];
-        //     for(var r=0; r<brickRowCount; r++) {
-        //         bricks[c][r] = { x: 0, y: 0, status: 1 };
-        //     }
-        // }
 
-        var playerOneScore = 0;
-        var PlayerTwoScore = 0;
+    var brickRowCount = 10;
+    var brickColumnCount = 20;
+    var brickWidth = 40;
+    var brickHeight = 10;
+    var brickPadding = 10;
+    var brickOffsetTop = 40;
+    var brickOffsetLeft = 30;
 
-        function drawBall() {
-            ctx.beginPath();
-            ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-            ctx.fillStyle = "#0095DD";
-            ctx.fill();
-            ctx.closePath();
-        };
+    var bricks = [];
+    for(var c=0; c<brickColumnCount; c++) {
+        bricks[c] = [];
+        for(var r=0; r<brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1 };
+        }
+    }
 
-        function drawPlayerOne() {
-            ctx.beginPath();
-            ctx.rect(10, paddleOneY, paddleWidth, paddleHeight);
-            ctx.fillStyle = "rgb(200, 0, 0)";
-            ctx.fill();
-            ctx.closePath();
-        };
+    var score = 0;
+    var lives = 1;
 
-        function drawPlayerTwo() {
-            ctx.beginPath();
-            ctx.rect(canvas.width-paddleWidth-10, paddleTwoY, paddleWidth, paddleHeight);
-            ctx.fillStyle = "rgb(200, 0, 0)";
-            ctx.fill();
-            ctx.closePath();
-        };
+    function drawBall() {
+        ctx.beginPath();
+        ctx.drawImage(disc, x, y)
+        ctx.closePath();
+    };
 
-        // function drawBricks() {
-        //     for(var c=0; c<brickColumnCount; c++) {
-        //         for(var r=0; r<brickRowCount; r++) {
-        //             if(bricks[c][r].status == 1) {
-        //                 var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-        //                 var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
-        //                 bricks[c][r].x = brickX;
-        //                 bricks[c][r].y = brickY;
-        //                 ctx.beginPath();
-        //                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        //                 ctx.fillStyle = "#0095DD";
-        //                 ctx.fill();
-        //                 ctx.closePath();
-        //             }
-        //         }
-        //     }
-        // }
+    function drawPaddle() {
+        ctx.beginPath();
+        ctx.drawImage(paddle, paddleX, canvas.height-paddleHeight-10);
+        ctx.closePath();
+    };
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawBall();
-            drawPlayerOne();
-            drawPlayerTwo();
-            drawTopHUD();
-            drawLowHUD();
-            drawP1Score();
-            drawP2Score();
-           
-
-            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-                dx = -dx;
+    function drawBricks() {
+        for(var c=0; c<brickColumnCount; c++) {
+            for(var r=0; r<brickRowCount; r++) {
+                if(bricks[c][r].status === 1) {
+                    var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                    var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
+                    ctx.beginPath();
+                    ctx.drawImage(brick, brickX, brickY);
+                    ctx.closePath();
+                }
             }
+        }
+    }
 
-            if(y + dy < ballRadius+20 || y + dy > canvas.height-ballRadius-20) {
+    function draw() {
+        if (game_running){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBricks();
+        drawBall();
+        drawPaddle();
+        drawTopHUD();
+        drawScore();
+        drawLives();
+        collisionDetection();
+       
+
+        if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+            dx = -dx;
+        }
+
+        if(y + dy < ballRadius) {
+            dy = -dy;
+        } else if(y + dy > canvas.height-ballRadius) {
+            if(x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
-            }
-                
-            if(rightPressed) {
-                paddleOneY += 7;
-                if (paddleOneY + paddleHeight > canvas.height){
-                    paddleOneY = canvas.height - paddleHeight;
-                }
-            } else if(leftPressed) {
-                paddleOneY -= 7;
-                if (paddleOneY < 0){
-                    paddleOneY = 0;
-                }
-            }
-                
-            if(dPressed) {
-                paddleTwoY += 7;
-                if (paddleTwoY + paddleHeight > canvas.height){
-                    paddleTwoY = canvas.height - paddleHeight;
-                }
-            } else if(aPressed) {
-                paddleTwoY -= 7;
-                if (paddleTwoY < 0){
-                    paddleTwoY = 0;
+            } else {
+                lives--;
+                if(!lives) {
+                    game_running = false;
+                    check_game_running();
+                } else {
+                    x = canvas.width/2;
+                    y = canvas.height-30;
+                    dx = 4;
+                    dy = -4;
+                    paddleX = (canvas.width-paddleWidth)/2;
                 }
             }
-
-            x += dx;
-            y += dy;
-            requestAnimationFrame(draw);
-
         }
 
-        document.addEventListener("keydown", keyDownHandler, false);
-        document.addEventListener("keyup", keyUpHandler, false);
-
-
-        function keyDownHandler(e) {
-            if(e.key === "Right" || e.key === "ArrowRight") {
-                rightPressed = true;
+        if(rightPressed) {
+            paddleX += 7;
+            if (paddleX + paddleWidth > canvas.width){
+                paddleX = canvas.width - paddleWidth;
             }
-            else if(e.key === "Left" || e.key === "ArrowLeft") {
-                leftPressed = true;
-            } else if (e.key === "a" || e.keyCode === "65") {
-                aPressed = true;
-            } else if (e.key === "d" || e.keyCode === "68") {
-                dPressed = true;
-            } else if (e.key === "Enter" || e.key === "" || e.keyCode === 32) {
-                spacePressed = true;
-                startGame();
+        } else if(leftPressed) {
+            paddleX -= 7;
+            if (paddleX < 0){
+                paddleX = 0;
             }
         }
 
-        function keyUpHandler(e) {
-            if(e.key === "Right" || e.key === "ArrowRight") {
-                rightPressed = false;
-            } else if(e.key === "Left" || e.key === "ArrowLeft") {
-                leftPressed = false;
-            } else if (e.key === "a" || e.keyCode === "65") {
-                aPressed = false;
-            } else if (e.key === "d" || e.keyCode === "68") {
-                dPressed = false;
-            } else if (e.key === "Enter" || e.keyCode === 32) {
-                spacePressed = false;
+        x += dx;
+        y += dy;
+        requestAnimationFrame(draw);
+        } else {
+            drawGameOver();
+        }
+
+    }
+
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("mousemove", mouseMoveHandler, false);
+
+    function mouseMoveHandler(e) {
+        var relativeX = e.clientX - canvas.offsetLeft;
+        if(relativeX > 0 && relativeX < canvas.width) {
+            paddleX = relativeX - paddleWidth/2;
+        }
+    }
+
+    function keyDownHandler(e) {
+        if(e.key === "Right" || e.key === "ArrowRight") {
+            rightPressed = true;
+        }
+        else if(e.key === "Left" || e.key === "ArrowLeft") {
+            leftPressed = true;
+        } else if (e.key === "Enter" || e.keyCode === 13) {
+            enterPressed = true;
+            startGame();
+        } else if (e.key === "r" || e.keyCode === 82) {
+            rPressed = true;
+            game_running = true;
+            lives = 3
+        } 
+    }
+
+    function keyUpHandler(e) {
+        if(e.key === "Right" || e.key === "ArrowRight") {
+            rightPressed = false;
+        }
+        else if(e.key === "Left" || e.key === "ArrowLeft") {
+            leftPressed = false;
+        } else if (e.key === "Enter" || e.keyCode === 13) {
+            enterPressed = false;
+        } else if (e.key === "r" || e.keyCode === 82) {
+            rPressed = false;
+        } 
+    }
+
+    function collisionDetection() {
+        for(var c=0; c<brickColumnCount; c++) {
+            for(var r=0; r<brickRowCount; r++) {
+                var b = bricks[c][r];
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight && b.status === 1) {
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                    if(score === brickRowCount*brickColumnCount) {
+                        alert("A WINNER IS YOU!");
+                        document.location.reload();
+                    }
+                }
             }
         }
+    }
 
-        // function collisionDetection() {
-        //     for(var c=0; c<brickColumnCount; c++) {
-        //         for(var r=0; r<brickRowCount; r++) {
-        //             var b = bricks[c][r];
-        //             if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight && b.status === 1) {
-        //                 dy = -dy;
-        //                 b.status = 0;
-        //                 playerOneScore++;
-        //                 // if(score == brickRowCount*brickColumnCount) {
-        //                 //     alert("A WINNER IS YOU!");
-        //                 //     document.location.reload();
-        //                 // }
-        //             }
-        //         }
-        //     }
-        // }
-
-        function drawTopHUD() {
-            ctx.beginPath();
-            ctx.rect(0, 0, canvas.width, 30);
-            ctx.fillStyle = "rgb(0, 0, 0)";
-            ctx.fill();
-            ctx.closePath();
-        };
-
-        function drawLowHUD() {
-            ctx.beginPath();
-            ctx.rect(0, 570, canvas.width, 30);
-            ctx.fillStyle = "rgb(0, 0, 0)";
-            ctx.fill();
-            ctx.closePath();
-        };
-
-        function drawP1Score() {
-            ctx.font = "16px Oswald";
-            ctx.fillStyle = "#0095DD";
-            ctx.fillText("Player 1: "+playerOneScore, 10, 20);
-        }
-        function drawP2Score() {
-            ctx.font = "16px Oswald";
-            ctx.fillStyle = "#0095DD";
-            ctx.fillText("Player 2: "+PlayerTwoScore, canvas.width-70, 20);
+    function drawStartScreen() {
+        ctx.rect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.drawImage(logo, 150, 50);
+        ctx.font = "64px Orbitron";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Press ENTER to start", 150, 500);
         }
 
-        // function drawLives() {
-        //     ctx.font = "16px Arial";
-        //     ctx.fillStyle = "#0095DD";
-        //     ctx.fillText("Lives: "+lives, canvas.width-65, 20);
-        // }
-
-        function startGame() {
-            if (spacePressed === true){
-                console.log("Spacebar pressed.")
-                draw();
-            }
+    function drawGameOver() {
+        ctx.rect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.font = "132px Alegreya SC";
+        ctx.fillStyle = "red";
+        ctx.fillText("You Died", 275, canvas.height/2);
         }
-        
-        startGame();
 
+    function drawTopHUD() {
+        ctx.beginPath();
+        ctx.rect(0, 0, canvas.width, 30);
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fill();
+        ctx.closePath();
+    };
+
+    function drawScore() {
+        ctx.font = "16px Orbitron";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: "+score, 8, 20);
+    }
+
+    function drawLives() {
+        ctx.font = "16px Orbitron";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Lives: "+lives, canvas.width-90, 20);
+    }
+
+    function startGame() {
+        if (enterPressed === true && game_running === true){
+            console.log("Spacebar pressed.")
+            draw();
+        }
+    }
+
+    function check_game_running() {
+        if (game_running === false){
+            drawGameOver();
+        }
+    }
+    
+    drawStartScreen();
 }
-
-export default Pingtron;
