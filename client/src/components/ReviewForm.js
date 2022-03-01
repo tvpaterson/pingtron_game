@@ -54,17 +54,19 @@ const ReviewForm = ({addReview}) => {
                         
                         
                         <label>Rating:</label>
-                        <div className="rating">
-                            <input type="radio" id="star5" name="rating" value="5" onChange={handleRatingChange}/>
-                            <label htmlFor="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rating" value="4" onChange={handleRatingChange}/>
-                            <label htmlFor="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rating" value="3" onChange={handleRatingChange}/>
-                            <label htmlFor="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rating" value="2" onChange={handleRatingChange}/>
-                            <label htmlFor="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rating" value="1" onChange={handleRatingChange}/>
-                            <label htmlFor="star1" title="text">1 star</label>
+                        <div className="rating-main-container">
+                            <div className="rating">
+                                <input type="radio" id="star5" name="rating" value="5" onChange={handleRatingChange}/>
+                                <label htmlFor="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rating" value="4" onChange={handleRatingChange}/>
+                                <label htmlFor="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rating" value="3" onChange={handleRatingChange}/>
+                                <label htmlFor="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rating" value="2" onChange={handleRatingChange}/>
+                                <label htmlFor="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rating" value="1" onChange={handleRatingChange}/>
+                                <label htmlFor="star1" title="text">1 star</label>
+                            </div>
                         </div>
                         <button type="submit" name="submit" value="Save">Post Review</button>
                     </form>
