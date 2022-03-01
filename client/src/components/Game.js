@@ -7,6 +7,8 @@ window.onload = function () {
     const logo = document.getElementById("title-logo");
     const ahegao = document.getElementById("easter-egg");
     const bounce = new Audio("./bounce.mp3");
+    const titleCall = new Audio("./title_call.mp3");
+    const deathCry = new Audio("./nani_boom.mp3")
     const mysterySound = new Audio("./mystery_sound.mp3");
     const music = new Audio("./PingtronRealFlattened.mp3");
 
@@ -27,7 +29,8 @@ window.onload = function () {
     let rightPressed = false;
     let leftPressed = false;
     let enterPressed = false;
-    let retryPressed = false
+    let retryPressed = false;
+    let shiftPressed = false;
 
 
     let brickRowCount = 10;
@@ -47,7 +50,7 @@ window.onload = function () {
     }
 
     var score = 0;
-    var lives = 1;
+    var lives = 3;
 
     function drawBall() {
         ctx.beginPath();
@@ -109,6 +112,7 @@ window.onload = function () {
                     game_running = false;
                     check_game_running();
                 } else {
+                    deathCry.play();
                     x = canvas.width/2;
                     y = canvas.height-30;
                     dx = 4;
@@ -164,8 +168,11 @@ window.onload = function () {
         } else if (e.key === "r" || e.keyCode === 82) {
             retryPressed = true;
             game_running = true;
-            lives = 3
-        } 
+            lives = 3;
+        } else if (e.key === "Shift" || e.keyCode === 16){
+            shiftPressed = true;
+            titleCall.play();
+        }
     }
 
     function keyUpHandler(e) {
@@ -178,7 +185,9 @@ window.onload = function () {
             enterPressed = false;
         } else if (e.key === "r" || e.keyCode === 82) {
             retryPressed = false;
-        } 
+        } else if (e.key === "Shift" || e.keyCode === 16){
+            shiftPressed = false;
+        }
     }
 
     function collisionDetection() {
@@ -200,7 +209,7 @@ window.onload = function () {
     }
 
     function drawStartScreen() {
-        ctx.rect(0, 0, canvas.width, canvas.height)
+        ctx.rect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "black";
         ctx.fill();
         ctx.drawImage(logo, 150, 50);
