@@ -51,13 +51,9 @@ function App() {
         </div>
       </div>
     </div>
-      {/* <div className="audiothing">
-        <ReactAudioPlayer
-        src={require("./sounds/PingtronRealFlattened.mp3")}
-        autoPlay
-        controls
-        />
-      </div> */}
+    <audio controls loop>
+      <source src="./PingtronRealFlattened.mp3" type="audio/mpeg"/>
+    </audio>
         <footer id="footer">&#169; Sneed Co. All Rights Reserved</footer>
     </>
   );
