@@ -5,7 +5,7 @@ import ReviewForm from './components/ReviewForm';
 import ScoreBoard from './components/ScoreBoard';
 import Game from './components/Game';
 
-import {getReviews, deleteReview, postReview} from './components/ReviewService';
+import {getReviews, updateReview, deleteReview, postReview} from './components/ReviewService';
 
 function App() {
 
@@ -22,6 +22,17 @@ function App() {
     postReview(review)
       .then(savedReview => setReviews([ ...reviews, savedReview ]));
   };
+
+  const alterReview = updatedReview => {
+    updateReview(updatedReview);
+
+    const updatedReviewIndex = reviews.findIndex(review => review._id === updateReview._id);
+    const updatedReviews = [...reviews];
+    updatedReviews[updatedReviewIndex] = updatedReview;
+    setReviews(updatedReviews)
+
+    console.log("Review verified.")
+  }
 
   const removeReview = idToDelete => {
         console.log(idToDelete);
@@ -48,7 +59,7 @@ function App() {
           <ReviewForm addReview={addReview}/>
         </div>
         <div class="reviews-list-container">
-          {reviews ? <ReviewsList reviews={reviews} removeReview={removeReview}/> : null}
+          {reviews ? <ReviewsList reviews={reviews} alterReview={alterReview} removeReview={removeReview}/> : null}
         </div>
       </div>
     </div>
