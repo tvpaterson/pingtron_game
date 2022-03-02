@@ -31,7 +31,7 @@ function App() {
     updatedReviews[updatedReviewIndex] = updatedReview;
     setReviews(updatedReviews)
 
-    console.log("Review verified.")
+    console.log(updatedReview.name)
   }
 
   const removeReview = idToDelete => {

@@ -8,7 +8,7 @@ const ReviewCard = ({ review, removeReview, alterReview }) => {
     let verified_user = `${review.name} ✔`
 
     alterReview({
-      id: review.id,
+      _id: review._id,
       name: verified_user,
       score: review.score,
       rating: review.rating,
